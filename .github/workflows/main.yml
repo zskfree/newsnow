@@ -5,8 +5,8 @@ permissions:
 
 on:
   schedule:
-    - cron: "0 0 * * *" # 每天 UTC 时间 0 点自动同步一次
-  workflow_dispatch: # 允许手动触发
+    - cron: "0 0 * * *" # 每天自动同步一次
+  workflow_dispatch: # 允许手动点击按钮触发
 
 jobs:
   sync_latest_from_upstream:
@@ -20,7 +20,7 @@ jobs:
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
         with:
           target_repo_token: ${{ secrets.GITHUB_TOKEN }}
-          upstream_repository: ourongxing/newsnow
-          upstream_branch: main
-          target_branch: main
+          upstream_sync_repo: ourongxing/newsnow  # 修改了这里
+          upstream_sync_branch: main              # 修改了这里
+          target_sync_branch: main                # 修改了这里
           test_mode: false
